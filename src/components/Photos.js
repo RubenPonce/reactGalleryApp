@@ -17,8 +17,7 @@ class Photos extends Component {
     }
 
     render(){
-      console.log(this.props.photoInformation)
-      console.log(typeof this.props.photoInformation)
+
       let data = this.props.photoInformation;
 
       //prevent double render

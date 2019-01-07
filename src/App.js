@@ -12,19 +12,23 @@ import Config from './components/Config';
 class App extends Component {
 
   state = {
-    photoInformation: 'urldata',
+    photoInformation: '',
     id: 'id'
   };
 
+changePhotoData=(searchParam, pageLength)=>{
+  Axios.get(this.handleUrl(searchParam,pageLength))
+  .then(response => {
+    console.log(response.data)
+    this.setState({
+      photoInformation: response.data.photos.photo
+    })
+  })
+}
+
   componentWillMount(){
     //default page
-    Axios.get(this.handleUrl('galaxies','4'))
-      .then(response => {
-        console.log(response.data)
-        this.setState({
-          photoInformation: response.data.photos.photo
-        })
-      })
+    this.changePhotoData('galaxies','4')
 
        
   }
@@ -39,11 +43,11 @@ class App extends Component {
     return (
         <div className="container">
 
-          <Search />
+          <Search changePhotoData = {this.changePhotoData} />
           <Nav />
           <Photos 
           photoInformation={this.state.photoInformation}
-          handleUrl = {this.handleUrl}
+          changePhotoData = {this.changePhotoData}
           />
         </div>
 
