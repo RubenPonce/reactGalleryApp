@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import './index.css';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 
 //App Components
@@ -41,8 +42,9 @@ changePhotoData=(searchParam, pageLength)=>{
     console.log(this.state.photoInformation);
     console.log(this.state.id);
     return (
+      <BrowserRouter>
         <div className="container">
-
+        <Route path="/search" component={Search}/>
           <Search changePhotoData = {this.changePhotoData} />
           <Nav />
           <Photos 
@@ -50,7 +52,7 @@ changePhotoData=(searchParam, pageLength)=>{
           changePhotoData = {this.changePhotoData}
           />
         </div>
-
+      </BrowserRouter>
     );
   }
 }

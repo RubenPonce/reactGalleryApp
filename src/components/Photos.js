@@ -19,7 +19,7 @@ class Photos extends Component {
     render(){
 
       let data = this.props.photoInformation;
-
+      
       //prevent double render
       if(typeof data==='string'){
         return false;
